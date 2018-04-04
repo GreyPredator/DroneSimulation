@@ -1,5 +1,8 @@
 from Drones import Drone
-
+from Weaponeering import HardPoint
+from GeoSpatial import Location
+from GeoSpatial import FlightPath
+from Strike import Mission
 
 class MQ1B(Drone):
 
@@ -20,8 +23,8 @@ class MQ1B(Drone):
         self.__Endurance = 24
         self.__Ceiling = 25000
         self.__FuelCapacity = 100
-        self.__HardPoint1 = HardPoint1
-        self.__HardPoint2 = HardPoint2
+        self.__HardPoint1 = HardPoint(None)
+        self.__HardPoint2 = HardPoint(None)
 
         # Drone Operation Data Fields
         self.__Speed = 0
@@ -29,7 +32,7 @@ class MQ1B(Drone):
         self.__FuelRemaining = 100
         self.__isAirborne = False
         self.__isLanded = True
-        self.__Location = Location
+        self.__Location = Location(0,0)
         self.__OpStatus = 'Landed'
-        self.__FlightPath = FlightPath
+        self.__FlightPath = FlightPath(None)
         self.__Mission = Mission
