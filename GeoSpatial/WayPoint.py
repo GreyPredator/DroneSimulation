@@ -1,14 +1,17 @@
-from GeoSpatial.Location import Location
+class WayPoint:
 
+    def __init__(self, Name, Location):
+        self.__Name = Name
+        self.__Location = Location
 
-class WayPoint(Location):
+    def getName(self):
+        return self.__Name
 
-    def __init__(self,X, Y, Altitude):
-        super().__init__(X,Y)
-        self.__Altitude = Altitude
+    def setName(self, v):
+        self.__Name = v
 
-    def getAltitude(self):
-        return self.__Altitude
+    def getLocation(self):
+        return self.__Location
 
-    def setAltitude(self,v):
-        self.__Altitude = v
+    def setLocation(self, v):
+        self.__Location = v
