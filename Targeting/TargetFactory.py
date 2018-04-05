@@ -1,32 +1,30 @@
-from Targeting import Target
+from Targeting.Target import Target
+from GeoSpatial.Location import Location
 import random
 
 
 def targetFactory(count, designator, dominantType, sector):
+    tgts = []
+    maxX = sector.getUpperLeft().getX()
+    maxY = sector.getUpperLeft().getY()
+    minX = sector.getUpperLeft().getX()
+    minY = sector.getUpperLeft().getY()
     i = 0
-    while(i < count):
-        # IDNumber, Type, Location, Priority, isMobile, Size, Status, Value, Age, Description
-        # Target Types:
-            # Troop Concentration, Armored Vehicle, Unarmored Vehicle, Weapon Emplacement, Bunker, or Structure
-        # Target Location
-            # Targets are randomly  located in a sector defined by boundaries
-        # Target Priorities:
-            # Flash Urgent Immediate Routine
-        # Target Size:
-            # Small Large
-        # Target Age:
-            # New Recent Old
+    while i < count:
+
         ID = random.randint(1, 1001)
         TT = random.randint(1, 101)
         PR = random.randint(1, 5)
         SZ = random.randint(1, 3)
         A = random.randint(1, 4)
 
-        X = sector.getUpperLeft().getX()
-        Y = sector.getUpperRight()
+        X = random.randint(minX, maxX + 1)
+        Y = random.randint(minY, maxY + 1)
+        TGTLOC = Location(X, Y, 0)
 
         IDN = designator + "-" + str(ID)
         STAT = 'Active'
+        MBL = False
 
         if SZ == 2:
             TS = 'Large'
@@ -36,12 +34,11 @@ def targetFactory(count, designator, dominantType, sector):
         if A == 3:
             TGTA = 'New'
         elif A == 2:
-            TGTA =  'Recent'
+            TGTA = 'Recent'
         else:
             TGTA = 'Old'
 
-
-        if dominantType != None:
+        if dominantType is not None:
             if TT > 25 < 95:
                 TYP = dominantType
             elif TT < 26 and TT > 20:
@@ -66,7 +63,7 @@ def targetFactory(count, designator, dominantType, sector):
                 TYP = 'Structure'
                 TGTVAL = 3.5
 
-        if dominantType == None:
+        if dominantType is None:
             if TT >= 1 and TT < 25:
                 TYP = 'Structure'
                 TGTVAL = 3.5
@@ -101,8 +98,27 @@ def targetFactory(count, designator, dominantType, sector):
         if PR == 4:
             PRTY = 'Routine'
             TGTVAL = TGTVAL * 1 * SZ * A
+        else:
+            PRTY = 'Routine'
+            TGTVAL = TGTVAL * 1 * SZ * A
 
-        TGTDESC = str(STAT, M, TS, TYP)
-        t1 = Target(IDN, TYP, PRTY, MBL, TS, STAT, TGTA,
+        if MBL is True:
+            M = 'Mobile'
+        else:
+            M = 'Fixed'
+
+        TGTDESC = str('A ' + TS + ' ' + M + ' ' + TYP)
+        # IDNumber, Type, Location, Priority, isMobile, Size, Status, Value, Age, Description
+        t1 = Target(IDN, TYP, TGTLOC, PRTY, MBL, TS, STAT, TGTVAL, TGTA, TGTDESC)
+
+        tgts.append(t1)
+        i = i + 1
+
+    return tgts
+
+def displayTargets(tgts):
+    for t in tgts:
+        print(t.getDescription())
+
 
 
