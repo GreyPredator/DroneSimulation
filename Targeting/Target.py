@@ -1,14 +1,16 @@
 class Target:
 
-    def __init__(self, IDNumber, Type, Location, Priority, isMobile, Length, Width, Status):
+    def __init__(self, IDNumber, Type, Location, Priority, isMobile, Size, Status, Value, Age, Description):
         self.__IDNumber = IDNumber
         self.__Type = Type
         self.__Location = Location
         self.__Priority = Priority
         self.__isMobile = isMobile
-        self.__Length = Length
-        self.__Width = Width
+        self.__Size = Size
         self.__Status = Status
+        self.__Value = Value
+        self.__Age = Age
+        self.__Description = Description
 
     def getIDNumber(self):
         return self.__IDNumber
@@ -25,14 +27,20 @@ class Target:
     def getisMobile(self):
         return self.__isMobile
 
-    def getLength(self):
-        return self.__Length
-
-    def getWidth(self):
-        return self.__Width
+    def getSize(self):
+        return self.__Size
 
     def getStatus(self):
         return self.__Status
+
+    def getValue(self):
+        return self.__Value
+
+    def getAge(self):
+        return self.__Age
+
+    def getDescription(self):
+        return self.__Description
 
     def setIDNumber(self, v):
         self.__IDNumber = v
@@ -49,11 +57,23 @@ class Target:
     def setisMobile(self, v):
         self.__isMobile = v
 
+    def setSize(self, v):
+        self.__Size = v
+
     def setLength(self, v):
         self.__Length = v
 
     def setWidth(self, v):
         self.__Width = v
 
-    def getStatus(self, v):
+    def setStatus(self, v):
         self.__Status = v
+
+    def setValue(self, v):
+        self.__Value = v
+
+    def setAge(self, v):
+        self.__Age = v
+
+    def setDescription(self, v):
+        self.__Description = v
