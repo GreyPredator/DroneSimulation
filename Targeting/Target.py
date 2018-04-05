@@ -1,6 +1,24 @@
 class Target:
 
     def __init__(self, IDNumber, Type, Location, Priority, isMobile, Size, Status, Value, Age, Description):
+
+        # Target Types:
+            # Troop Concentration, Armored Vehicle, Unarmored Vehicle, Weapon Emplacement, Bunker, or Structure
+        # Target Location
+            # Targets are randomly  located in a sector defined by boundaries
+        # Target Priorities:
+            # Flash Urgent Immediate Routine
+        # Target Size:
+            # Small Large
+        # Target Status:
+            # Active Damaged Destroyed
+        # Target Age:
+            # New Recent Old
+        # Target Value:
+            # Troop Concentration = 2, Armored Vehicle = 5, Unarmored Vehicle = 3
+            # Weapon Emplacement = 1, Bunker = 3.2, or Structure = 3.5
+            # Target Value = Target Type Value * Priority * Size
+
         self.__IDNumber = IDNumber
         self.__Type = Type
         self.__Location = Location
